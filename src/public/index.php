@@ -1,4 +1,4 @@
 <?php
 declare(strict_types=1);
 
-echo 'It works !';
+require_once 'vendor/autoload.php';
