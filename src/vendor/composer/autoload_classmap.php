@@ -10,5 +10,9 @@ return array(
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInitd3ce80ee997baf94319163c9772d9810' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Controllers\\AuthController' => $baseDir . '/controllers/Authcontroller.php',
+    'Controllers\\HikeController' => $baseDir . '/controllers/HikesController.php',
     'Models\\Database' => $baseDir . '/models/Database.php',
+    'Models\\Hike' => $baseDir . '/models/Hike.php',
+    'Models\\User' => $baseDir . '/models/User.php',
 );

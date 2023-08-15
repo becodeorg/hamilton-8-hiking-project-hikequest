@@ -11,7 +11,11 @@ class ComposerStaticInitd3ce80ee997baf94319163c9772d9810
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInitd3ce80ee997baf94319163c9772d9810' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/Authcontroller.php',
+        'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikesController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
+        'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
+        'Models\\User' => __DIR__ . '/../..' . '/models/User.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
