@@ -8,7 +8,7 @@ HikeQuest is your go-to partner for all your hiking adventures. Whether you're a
 
 ## Requirements
 
-Docker Engine / Docker Compose / PHP
+Docker / PHP / HTML / CSS
 
 ## Link
 
