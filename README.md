@@ -1,6 +1,6 @@
 # HikeQuest - Your Ultimate Hiking Partner
 
-Welcome to the HikeQuest repository! Here, you'll find all the resources and code necessary to bring your favorite hiking partner to life.
+Welcome to HikeQuest! Your new favorite hiking partner.
 
 ## What is HikeQuest?
 
