@@ -28,4 +28,11 @@ class Hike extends Database
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function updateHike(string $idHike, string $name, string $distance, string $duration, string $elevation_gain, string $description)
+    {
+        $sql = "UPDATE Hikes SET name = ?, distance = ?, duration = ?, elevation_gain = ?, description = ? WHERE id = ?";
+        $idOfHike = htmlspecialchars($idHike);
+        return $this->query($sql, [$name, $distance, $duration, $elevation_gain, $description, $idOfHike]);
+    }
 }

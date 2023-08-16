@@ -3,3 +3,6 @@
 Distance: <?= $hike['distance'] ?><br>
 Duration: <?= $hike['duration'] ?><br>
 Elevation Gain: <?= $hike['elevation_gain'] ?><br>
+<a href="/edit?id=<?= $hike['id'] ?>">
+    <button>Edit</button>
+</a>

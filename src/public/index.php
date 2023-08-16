@@ -24,6 +24,18 @@ try {
             $hikeController = new HikeController();
             $hikeController->DisplayProduct($_GET['id']);
             break;
+        case "edit":
+            $hikeController = new HikeController();
+            if ($method === "GET") $hikeController->showEditHike($_GET['id']);
+            if ($method === "POST") $hikeController->updateHike(
+                $_GET['id'],
+                $_POST['name'],
+                $_POST['distance'],
+                $_POST['duration'],
+                $_POST['elevation_gain'],
+                $_POST['description'],
+            );
+            break;
         case "register":
             $authController = new AuthController();
             if ($method === "GET") $authController->showRegistrationForm();
@@ -41,5 +53,6 @@ try {
     }
 } catch (Exception $e) {
     print_r($e->getMessage());
+    var_dump($_GET);
 }
 ?>

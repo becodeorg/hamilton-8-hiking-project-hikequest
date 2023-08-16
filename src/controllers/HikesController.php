@@ -48,4 +48,37 @@ class HikeController
             print_r($e->getMessage());
         }
     }
+
+    public function showEditHike(string $idHike)
+    {
+        try {
+            $hike = (new Hike())->findOneHike($idHike);
+
+            if (empty($hike)) {
+                echo "Hike not found";
+                return;
+            }
+
+            // Display the page
+            include 'views/layout/header.view.php';
+            include 'views/edit.view.php';
+            include 'views/layout/footer.view.php';
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    public function updateHike(string $idHike, $name, $distance, $duration, $elevation_gain, $description)
+    {
+        try {
+            $UpdateHike = (new Hike())->updateHike($idHike, $name, $distance, $duration, $elevation_gain, $description);
+            if (empty($UpdateHike)) {
+                echo "Hike not saved";
+                return;
+            }
+            header('location: /');
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
 }
