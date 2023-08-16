@@ -19,11 +19,12 @@ class Hike extends Database
 
         return $hikes;
     }
-    public function findOneHike(string $nameOfHick): array|false
+    
+    public function findOneHike(int $idHike): array|false
     {
         $stmt = $this->query(
-            "SELECT * FROM Hikes WHERE name = ?",
-            [$nameOfHick]
+            "SELECT * FROM Hikes WHERE id = ?",
+            [$idHike]
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }

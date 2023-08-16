@@ -31,12 +31,12 @@ class HikeController
             print_r($e->getMessage());
         }
     }
-    public function DisplayProduct(string $nameOfHick){
+    public function DisplayProduct(int $idHike){
         try {
-            $hike = (new Hike())->findOneHike($nameOfHick);
+            $hike = (new Hike())->findOneHike($idHike);
 
-            if (empty($nameOfHick)) {
-                echo "empty product name";
+            if (empty($idHike)) {
+                echo "empty hike";
             }
 
             // 3 - Afficher la page
