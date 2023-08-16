@@ -18,6 +18,7 @@
                 <?php if (!empty($_SESSION['user'])): ?>
                     Bonjour <?= $_SESSION['user']['username'] ?>
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href="/profil">Profil</a></li>
                 <?php else: ?>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>

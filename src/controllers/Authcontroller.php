@@ -56,7 +56,7 @@ class AuthController
         if (password_verify($passwordInput, $user['password']) === false) {
             throw new Exception('Mauvais mot de passe');
         }
-        $sessionStart = (new User())->session($nickname, $user['email']);
+        $sessionStart = (new User())->session($nickname, $user['email'],$user['firstname'],$user['lastname']);
 
         // Redirect to home page
         http_response_code(302);
@@ -74,5 +74,31 @@ class AuthController
         http_response_code(302);
         header('location: /');
     }
+    public function showProfilForm()
+    {
+        include 'views/layout/header.view.php';
+        include 'views/profile.view.php';
+        include 'views/layout/footer.view.php';
+    }
+
+    public function updateProfil(array $post)
+    {
+        try {
+            if (empty($post['nickname']) || empty($email) || empty($firstname) || empty($lastname)) {
+                throw new Exception('Formulaire non complet');
+            }
+
+            $nickname = htmlspecialchars($nickname);
+            $lastname = htmlspecialchars($lastname);
+            $firstname = htmlspecialchars($firstname);
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception('Met moi un bon email, En****!!!');
+            }
+        }catch (Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
 }
 

@@ -11,21 +11,30 @@ class User extends Database
     {
         $sql = "INSERT INTO Users (firstname, lastname, nickname, email, password) 
                 VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->query($sql, [$firstname, $lastname, $nickname, $email, $passwordHash]);
+        $stmt = Database::query($sql, [$firstname, $lastname, $nickname, $email, $passwordHash]);
     }
     public function login(string $nickname)
     {
         $sql ="SELECT * FROM Users WHERE nickname = ?";
-        $stmt = $this->query($sql, [$nickname]);
+        $stmt = Database::query($sql, [$nickname]);
         $user = $stmt->fetch();
         return $user;
     }
-    public function session(string $nickname, string $email, ){
+    public function session(string $nickname, string $email, string $firstname, string $lastname ){
         $_SESSION['user'] = [
             'id' => $this->lastInsertId(),
             'username' => $nickname,
-            'email' => $email
+            'email' => $email,
+            'firstname' => $firstname,
+            'lastname' => $lastname
         ];
     }
+
+    public function editUser(array $param): bool{
+        $sql = "UPDATE Users SET lastname= ? AND firstname= ? AND email= ? AND nickname= ? WHERE id=?";
+        return Database::exec($sql, $param);
+
+    }
+
 
 }
