@@ -31,7 +31,7 @@ class HikeController
             print_r($e->getMessage());
         }
     }
-    public function DisplayProduct(int $idHike){
+    public function DisplayProduct(string $idHike){
         try {
             $hike = (new Hike())->findOneHike($idHike);
 

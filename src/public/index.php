@@ -22,7 +22,7 @@ try {
             break;
         case "hike":
             $hikeController = new HikeController();
-            $hikeController->DisplayProduct((int)$_GET['id']);
+            $hikeController->DisplayProduct($_GET['id']);
             break;
         case "register":
             $authController = new AuthController();

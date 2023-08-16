@@ -20,7 +20,7 @@ class Hike extends Database
         return $hikes;
     }
     
-    public function findOneHike(int $idHike): array|false
+    public function findOneHike(string $idHike): array|false
     {
         $stmt = $this->query(
             "SELECT * FROM Hikes WHERE id = ?",
