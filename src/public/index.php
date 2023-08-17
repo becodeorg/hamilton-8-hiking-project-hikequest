@@ -26,7 +26,10 @@ try {
             break;
         case "edit":
             $hikeController = new HikeController();
-            if ($method === "GET") $hikeController->showEditHike($_GET['id']);
+            if ($method === "GET") {
+                $tags = $hikeController->findAllTagsFilter();
+                $hikeController->showEditHike($_GET['id']);
+            }
             if ($method === "POST") $hikeController->updateHike(
                 $_GET['id'],
                 $_POST['name'],

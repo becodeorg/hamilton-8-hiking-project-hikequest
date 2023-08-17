@@ -7,6 +7,7 @@ namespace Controllers;
 use Exception;
 use Models\Database;
 use Models\Hike;
+use Models\Tags;
 use PDO;
 
 class HikeController
@@ -53,6 +54,7 @@ class HikeController
     {
         try {
             $hike = (new Hike())->findOneHike($idHike);
+            $tags = $this->findAllTagsFilter();
 
             if (empty($hike)) {
                 echo "Hike not found";
@@ -77,6 +79,31 @@ class HikeController
                 return;
             }
             header('location: /');
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    public function findAllTagsFilter()
+    {
+        try {
+            $tags = (new Tags())->findAllTags();
+            return $tags;
+
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    public function showTagsByHike(string $idHike){
+        try {
+            $tags = (new Tags())->findTagByHike($idHike);
+
+            if (empty($tags)) {
+                echo "Tags not found";
+                return;
+            }
+
         } catch (Exception $e) {
             print_r($e->getMessage());
         }

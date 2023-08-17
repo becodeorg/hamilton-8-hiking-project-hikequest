@@ -15,6 +15,7 @@ class ComposerStaticInitd3ce80ee997baf94319163c9772d9810
         'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikesController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
         'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
+        'Models\\Tags' => __DIR__ . '/../..' . '/models/Tags.php',
         'Models\\User' => __DIR__ . '/../..' . '/models/User.php',
     );
 
