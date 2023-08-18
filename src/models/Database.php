@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Models;
 
+use Exception;
 use PDO;
 //Utiliser PDO
 use PDOStatement;
@@ -39,7 +40,7 @@ class Database
         return $stmt;
     }
 
-    public function lastInsertId()
+    public function lastInsertId(): string|int
     {
         return $this->pdo->lastInsertId();
     }

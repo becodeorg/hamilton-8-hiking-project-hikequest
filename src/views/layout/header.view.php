@@ -12,13 +12,12 @@
     <header>
     <nav>
             <ul>
-                <li><a href="/"><strong>Classic Models</strong></a></li>
+                <li><a href="/"><strong>HikeQuest</strong></a></li>
             </ul>
             <ul>
                 <?php if (!empty($_SESSION['user'])): ?>
-                    Bonjour <?= $_SESSION['user']['username'] ?>
+                    <a href="/profil"> Bonjour <?= $_SESSION['user']['username'] ?></a>
                     <li><a href="/logout">Logout</a></li>
-                    <li><a href="/profil">Profil</a></li>
                 <?php else: ?>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>

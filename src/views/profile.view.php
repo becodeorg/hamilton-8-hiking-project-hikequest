@@ -9,7 +9,7 @@
     </div>
     <div>
         <label for="nickname">Nickname</label>
-        <input type="text" id="nickname" name="nickname" value="<?= $_SESSION['user']['nickname'] ?>"/>
+        <input type="text" id="nickname" name="nickname" value="<?= $_SESSION['user']['username'] ?>"/>
     </div>
     <div>
         <label for="email">Email</label>

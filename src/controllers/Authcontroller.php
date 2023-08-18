@@ -56,7 +56,7 @@ class AuthController
         if (password_verify($passwordInput, $user['password']) === false) {
             throw new Exception('Mauvais mot de passe');
         }
-        $sessionStart = (new User())->session($nickname, $user['email'],$user['firstname'],$user['lastname']);
+        (new User())->session($nickname, $user['email'], $user['firstname'], $user['lastname'], $user['User_id']);
 
         // Redirect to home page
         http_response_code(302);
@@ -84,21 +84,31 @@ class AuthController
     public function updateProfil(array $post)
     {
         try {
-            if (empty($post['nickname']) || empty($email) || empty($firstname) || empty($lastname)) {
+            if (empty($post['nickname']) || empty($post['email']) || empty($post['firstname']) || empty($post['lastname'])) {
                 throw new Exception('Formulaire non complet');
             }
 
-            $nickname = htmlspecialchars($nickname);
-            $lastname = htmlspecialchars($lastname);
-            $firstname = htmlspecialchars($firstname);
+            $nickname = htmlspecialchars($post['nickname']);
+            $lastname = htmlspecialchars($post['lastname']);
+            $firstname = htmlspecialchars($post['firstname']);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                throw new Exception('Met moi un bon email, En****!!!');
+                throw new Exception('le mail est incorrect');
             }
+
+
+            $edit = (new User())->editUser(
+                [$nickname, $email, $firstname, $lastname, $_SESSION['user']['id']]
+            );
+            if (!$edit) {
+                throw new Exception("Ca ne fonctionne pas!");
+            }
+
+            (new User())->session($nickname, $email, $firstname, $lastname, $_SESSION['user']['id']);
         }catch (Exception $e){
             echo $e->getMessage();
         }
     }
 
 }
-
