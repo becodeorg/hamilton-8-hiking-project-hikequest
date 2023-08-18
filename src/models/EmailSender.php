@@ -36,5 +36,4 @@ class EmailSender
             echo 'Email could not be sent. Error: ', $mail->ErrorInfo;
         }
     }
-    
 }
