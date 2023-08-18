@@ -44,6 +44,12 @@ try {
             $authController = new AuthController();
             $authController->logout();
             break;
+        case "profil":
+            $authController = new AuthController();
+            if ($method === "GET") $authController->showProfilForm();
+            if ($method === "POST") $authController->updateProfil($_POST);
+            $authController->showProfilForm();
+            break;
     }
 } catch (Exception $e) {
     print_r($e->getMessage());

@@ -11,21 +11,38 @@ class User extends Database
     {
         $sql = "INSERT INTO Users (firstname, lastname, nickname, email, password) 
                 VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->query($sql, [$firstname, $lastname, $nickname, $email, $passwordHash]);
+        $stmt = Database::query($sql, [$firstname, $lastname, $nickname, $email, $passwordHash]);
     }
     public function login(string $nickname)
     {
         $sql ="SELECT * FROM Users WHERE nickname = ?";
-        $stmt = $this->query($sql, [$nickname]);
-        $user = $stmt->fetch();
-        return $user;
+        $stmt = Database::query($sql, [$nickname]);
+        return $stmt->fetch();
     }
-    public function session(string $nickname, string $email, ){
-        $_SESSION['user'] = [
-            'id' => $this->lastInsertId(),
-            'username' => $nickname,
-            'email' => $email
-        ];
+    public function session(string $nickname, string $email, string $firstname, string $lastname, string|int $id = null): void
+    {
+        if ($id == null) {
+            $_SESSION['user'] = [
+                'id' => Database::lastInsertId(),
+                'username' => $nickname,
+                'email' => $email,
+                'firstname' => $firstname,
+                'lastname' => $lastname
+            ];
+        } else {
+            $_SESSION['user'] = [
+                'id' => $id,
+                'username' => $nickname,
+                'email' => $email,
+                'firstname' => $firstname,
+                'lastname' => $lastname
+            ];
+        }
     }
 
+    public function editUser(array $param): bool
+    {
+        $sql = "UPDATE Users SET nickname= ?, email= ?, firstname= ?, lastname= ? WHERE User_id=?";
+        return Database::exec($sql, $param);
+    }
 }
