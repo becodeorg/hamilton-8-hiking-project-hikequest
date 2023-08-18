@@ -1,5 +1,10 @@
-<?= $hike['created_at'] ?><br>
-<?= $hike['name'] ?><br>
-Distance: <?= $hike['distance'] ?><br>
-Duration: <?= $hike['duration'] ?><br>
-Elevation Gain: <?= $hike['elevation_gain'] ?><br>
+<?= $data['created_at'] ?><br>
+<?= $data['nickname'] ?><br>
+<?= $data['Hikes_Name'] ?><br>
+Distance: <?= $data['distance'] ?><br>
+Duration: <?= $data['duration'] ?><br>
+Elevation Gain: <?= $data['elevation_gain'] ?><br>
+<?php if (isset($_SESSION['user']['username']) && strtolower($_SESSION['user']['username']) == strtolower($data['nickname'])): ?>
+<a href="/edit?Hikes_Id=<?= $data['Hikes_Id'] ?>"><button>Edit</button></a>
+<button>Delete</button>
+<?php endif; ?>

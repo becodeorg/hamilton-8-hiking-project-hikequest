@@ -6,6 +6,7 @@ namespace Controllers;
 use Exception;
 use Models\Database;
 use Models\User;
+use Models\EmailSender;
 
 class AuthController
 {
@@ -30,6 +31,7 @@ class AuthController
         try{
             $registerForm = (new User())->register($firstname, $lastname, $nickname,$email,$passwordHash);
             $sessionStart = (new User())->session($nickname, $email);
+            $mailSender = (new EmailSender())->SendRegConfMail($email, $nickname);
             http_response_code(302);
             header('location: /');
         } catch (Exception $e) {
