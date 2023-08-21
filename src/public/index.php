@@ -27,17 +27,25 @@ try {
         case "edit":
             $hikeController = new HikeController();
             if ($method === "GET") {
-                $tags = $hikeController->findAllTagsFilter();
                 $hikeController->showEditHike($_GET['id']);
+                $hikeController->findTagByHike($_GET['id']);
+//                $tagsAdd = $hikeController->findAllTagsFilter();
             }
-            if ($method === "POST") $hikeController->updateHike(
-                $_GET['id'],
-                $_POST['name'],
-                $_POST['distance'],
-                $_POST['duration'],
-                $_POST['elevation_gain'],
-                $_POST['description'],
-            );
+            if ($method === "POST") {
+                $hikeController->updateHike(
+                    $_GET['id'],
+                    $_POST['name'],
+                    $_POST['distance'],
+                    $_POST['duration'],
+                    $_POST['elevation_gain'],
+                    $_POST['description'],
+                );
+                $hikeController->updateHikeTags(
+                    $_POST['tags_lied'] ?? [],
+                    $_POST['tags_not_lied'] ?? [],
+                    $_GET['id']
+                );
+            }
             break;
         case "register":
             $authController = new AuthController();

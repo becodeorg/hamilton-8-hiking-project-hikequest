@@ -54,7 +54,8 @@ class HikeController
     {
         try {
             $hike = (new Hike())->findOneHike($idHike);
-            $tags = $this->findAllTagsFilter();
+            $tagsChecked = $this->findTagByHike($idHike);
+            $tagsNotLied = $this->findTagNotLied($idHike);
 
             if (empty($hike)) {
                 echo "Hike not found";
@@ -78,7 +79,7 @@ class HikeController
                 echo "Hike not saved";
                 return;
             }
-            header('location: /');
+//            header('location: /');
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
@@ -90,6 +91,50 @@ class HikeController
             $tags = (new Tags())->findAllTags();
             return $tags;
 
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    public function findTagByHike($hikeId){
+        $tagsChoice = (new Tags())->findTagByHikeId($hikeId);
+        return $tagsChoice;
+    }
+
+    public function findTagNotLied($hikeId){
+        $tagsNotLied = (new Tags())->findTagsNotLied($hikeId);
+        return $tagsNotLied;
+    }
+
+    public function updateHikeTags(array $tags_Del,array $tags_add, string $id)
+    {
+        try {
+            $tags = (new Tags())->findTagByHikeId($id);
+
+            $tagsIdByTags = array();
+            foreach ($tags as $tag) {
+                $tagsIdByTags[] = $tag["Tags_Id"];
+            }
+
+            $tagsIdByTagsDel = array();
+            foreach ($tags_Del as $key => $value) {
+                $tagsIdByTagsDel[] = $value;
+            }
+
+
+                $resultArr = array_diff($tagsIdByTags, $tagsIdByTagsDel);
+                foreach ($resultArr as $key => $value){
+                    $tags = (new Tags())->deleteTagsRelation($value, $id);
+                }
+
+            if (!empty($tags_add)) {
+                foreach ($tags_add as $key => $value){
+                    if ($value){
+                        $tags = (new Tags())->addTagsRelation($value,$id);
+                    }
+                }
+            }
+            return $tags;
         } catch (Exception $e) {
             print_r($e->getMessage());
         }

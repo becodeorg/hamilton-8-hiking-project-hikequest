@@ -19,7 +19,7 @@ class Hike extends Database
 
         return $hikes;
     }
-    
+
     public function findOneHike(string $idHike): array|false
     {
         $stmt = $this->query(
