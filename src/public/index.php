@@ -31,10 +31,10 @@ try {
             $retrievecontroller->DisplayOneData($_GET['Hikes_Id']);
             break;
         case "edit":
-            $hikeController = new HikeController();
+            $hikeController = new retrieveAllController();
             if ($method === "GET") {
-                $hikeController->showEditHike($_GET['id']);
-                $hikeController->findTagByHike($_GET['id']);
+                $hikeController->showEditHike($_GET['Hikes_Id']);
+                $hikeController->findTagByHike($_GET['Hikes_Id']);
 //                $tagsAdd = $hikeController->findAllTagsFilter();
             }
             if ($method === "POST") {

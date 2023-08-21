@@ -11,15 +11,13 @@ return array(
     'Composer\\Autoload\\ComposerStaticInitd3ce80ee997baf94319163c9772d9810' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Controllers\\AuthController' => $baseDir . '/controllers/Authcontroller.php',
+    'Controllers\\HikeController' => $baseDir . '/controllers/HikesController.php',
     'Controllers\\MailController' => $baseDir . '/controllers/MailController.php',
     'Controllers\\retrieveAllController' => $baseDir . '/controllers/RetrieveAllController.php',
     'Models\\Database' => $baseDir . '/models/Database.php',
-<<<<<<< HEAD
+    'Models\\EmailSender' => $baseDir . '/models/EmailSender.php',
     'Models\\Hike' => $baseDir . '/models/Hike.php',
     'Models\\Tags' => $baseDir . '/models/Tags.php',
-=======
-    'Models\\EmailSender' => $baseDir . '/models/EmailSender.php',
->>>>>>> development
     'Models\\User' => $baseDir . '/models/User.php',
     'Models\\retrieveAll' => $baseDir . '/models/RetrieveAll.php',
     'PHPMailer\\PHPMailer\\DSNConfigurator' => $vendorDir . '/phpmailer/phpmailer/src/DSNConfigurator.php',

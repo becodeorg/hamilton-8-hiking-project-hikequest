@@ -7,17 +7,17 @@ namespace Composer\Autoload;
 class ComposerStaticInitd3ce80ee997baf94319163c9772d9810
 {
     public static $prefixLengthsPsr4 = array (
-        'P' =>
-            array (
-                'PHPMailer\\PHPMailer\\' => 20,
-            ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'PHPMailer\\PHPMailer\\' =>
-            array (
-                0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
-            ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
     );
 
     public static $classMap = array (
@@ -26,10 +26,13 @@ class ComposerStaticInitd3ce80ee997baf94319163c9772d9810
         'Composer\\Autoload\\ComposerStaticInitd3ce80ee997baf94319163c9772d9810' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/Authcontroller.php',
+        'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikesController.php',
         'Controllers\\MailController' => __DIR__ . '/../..' . '/controllers/MailController.php',
         'Controllers\\retrieveAllController' => __DIR__ . '/../..' . '/controllers/RetrieveAllController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
         'Models\\EmailSender' => __DIR__ . '/../..' . '/models/EmailSender.php',
+        'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
+        'Models\\Tags' => __DIR__ . '/../..' . '/models/Tags.php',
         'Models\\User' => __DIR__ . '/../..' . '/models/User.php',
         'Models\\retrieveAll' => __DIR__ . '/../..' . '/models/RetrieveAll.php',
         'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
