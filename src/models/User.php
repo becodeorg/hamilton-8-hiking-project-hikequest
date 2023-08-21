@@ -20,11 +20,13 @@ class User extends Database
         $user = $stmt->fetch();
         return $user;
     }
-    public function session(string $nickname, string $email, ){
+    public function session(string $nickname, string $email, string $firstname, string $lastname){
         $_SESSION['user'] = [
             'id' => $this->lastInsertId(),
             'username' => $nickname,
-            'email' => $email
+            'email' => $email,
+            'firstname' => $firstname,
+            'lastname' => $lastname
         ];
     }
 
