@@ -21,14 +21,14 @@ try {
             $retrievecontroller = new retrieveAllController();
             $retrievecontroller->DisplayAllDatas();
             break;
+        case "delete":
+            $retrievecontroller = new retrieveAllController();
+            if ($method === "GET") $retrievecontroller->showdeleteForm($_GET['Hikes_Id']);
+            if ($method === "POST") $retrievecontroller->deleteHike($_POST['Hikes_Id']);
+            break;
         case "hike":
             $retrievecontroller = new retrieveAllController();
             $retrievecontroller->DisplayOneData($_GET['Hikes_Id']);
-            break;
-        case "edit":
-            $retrievecontroller = new retrieveAllController();
-            if ($method === "GET") $retrievecontroller->showEditForm($_GET['Hikes_Id']);
-            if ($method === "POST") $retrievecontroller->editForm($_POST['id'], $_POST['name'], $_POST['distance'],$_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
             break;
         case "register":
             $authController = new AuthController();

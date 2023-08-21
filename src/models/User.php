@@ -19,30 +19,19 @@ class User extends Database
         $stmt = Database::query($sql, [$nickname]);
         return $stmt->fetch();
     }
-    public function session(string $nickname, string $email, string $firstname, string $lastname, string|int $id = null): void
-    {
-        if ($id == null) {
-            $_SESSION['user'] = [
-                'id' => Database::lastInsertId(),
-                'username' => $nickname,
-                'email' => $email,
-                'firstname' => $firstname,
-                'lastname' => $lastname
-            ];
-        } else {
-            $_SESSION['user'] = [
-                'id' => $id,
-                'username' => $nickname,
-                'email' => $email,
-                'firstname' => $firstname,
-                'lastname' => $lastname
-            ];
-        }
+    public function session(string $nickname, string $email, string $firstname, string $lastname){
+        $_SESSION['user'] = [
+            'id' => $this->lastInsertId(),
+            'username' => $nickname,
+            'email' => $email,
+            'firstname' => $firstname,
+            'lastname' => $lastname
+        ];
     }
-
-    public function editUser(array $param): bool
-    {
-        $sql = "UPDATE Users SET nickname= ?, email= ?, firstname= ?, lastname= ? WHERE User_id=?";
-        return Database::exec($sql, $param);
+    public function editProfile (string $firstname, string $lastname, string $username, string $email, string $passwordHash){
+        $sql = "UPDATE Users 
+        SET firstname = ?, lastname = ?, nickname = ?, email = ?, password = ?
+        WHERE User_id = ?";
+        $stmt = $this->query($sql, [$firstname, $lastname, $username, $email, $passwordHash]);
     }
 }

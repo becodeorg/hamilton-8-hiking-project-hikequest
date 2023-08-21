@@ -41,11 +41,6 @@ class retrieveAll extends Database
         );        
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function editHike(string $idHike, string $name, string $distance, string $duration, string $elevation_gain, string $description)
-    {
-        $sql = "UPDATE Hikes SET `Hikes_Name`=?, `distance`=?, `duration`=?, `elevation_gain`=?, `description`=? WHERE Hikes_Id = ?";
-        $this->query($sql, [$name, $distance, $duration, $elevation_gain, $description, $idHike]);
-    }
     public function findAllTags(): array
     {
         $sql = "SELECT * FROM Tags";
@@ -54,4 +49,13 @@ class retrieveAll extends Database
 
         return $tags;
     }
+    public function deleteHike(string $idHike)
+    {
+        $sqlDeleteRelations = "DELETE FROM `HikesTagsRelation` WHERE Htr_hikes_Id = ?";
+        $sqlDeleteHike = "DELETE FROM `Hikes` WHERE Hikes_Id = ?";
+        
+        $this->query($sqlDeleteRelations, [$idHike]);
+        $this->query($sqlDeleteHike, [$idHike]);
+    }
 }
+    

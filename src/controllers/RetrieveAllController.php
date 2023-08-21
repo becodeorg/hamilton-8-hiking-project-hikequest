@@ -40,30 +40,21 @@ class retrieveAllController
             print_r($e->getMessage());
         }
     }
-    public function editForm(string $idHikeInput, string $nameInput, string $distanceInput, string $durationInput, string $elevationGainInput, string $descriptionInput)
-    {
-        if (empty($idHikeInput) || empty($nameInput) || empty($distanceInput) || empty($durationInput) || empty($elevationGainInput) || empty($descriptionInput)) {
-            throw new Exception('Incomplete form');
-        }
-        
-        $name = htmlspecialchars($nameInput);
-        $distance = htmlspecialchars($distanceInput);
-        $duration = htmlspecialchars($durationInput);
-        $elevation_gain = htmlspecialchars($elevationGainInput);
-        $description = htmlspecialchars($descriptionInput);
-
-        (new retrieveAll())->editHike($idHikeInput, $name, $distance, $duration, $elevation_gain, $description);
-        
-        http_response_code(302);
-        header('Location: /');
-
-    }
-
-    public function showEditForm(string $id)
+    public function showdeleteForm(string $id)
     {
         $data = (new retrieveAll())->FindOneData($id);
         include 'views/layout/header.view.php';
-        include 'views/edit.view.php';
+        include 'views/delete.view.php';
         include 'views/layout/footer.view.php';
+    }
+    public function deleteHike(string $id)
+    {
+        try {
+            (new retrieveAll())->deleteHike($id);
+            header('Location: /');
+            exit(); 
+        } catch (Exception $e) {
+            echo "An error occurred: " . $e->getMessage();
+        }
     }
 }
