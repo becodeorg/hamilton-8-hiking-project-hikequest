@@ -1,6 +1,9 @@
 <h2>Edit Hike</h2>
+<<<<<<< HEAD
 <?php print_r($_GET)?>
 <?php var_dump($_GET)?>
+=======
+>>>>>>> development
 <?php if (!empty($hike)): ?>
         <form action="/edit?id=<?= $hike['Hikes_Id'] ?>" method="post">
             <label for="name">Name</label>
@@ -32,4 +35,7 @@
             <button type="submit">SAVE</button>
         </form>
 <?php endif; ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> development

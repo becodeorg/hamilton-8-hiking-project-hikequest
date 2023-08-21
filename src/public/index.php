@@ -1,28 +1,34 @@
 <?php
 declare(strict_types=1);
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'vendor/autoload.php';
 
-use Controllers\HikeController;
 use Controllers\AuthController;
+use Controllers\retrieveAllController;
 
 session_start();
 
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
-    $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
+    $method = $_SERVER['REQUEST_METHOD']; 
     switch ($url_path) {
         case "":
         case "/index.php":
-            $hikeController = new HikeController();
-            $hikeController->index();
+            $retrievecontroller = new retrieveAllController();
+            $retrievecontroller->DisplayAllDatas();
+            break;
+        case "delete":
+            $retrievecontroller = new retrieveAllController();
+            if ($method === "GET") $retrievecontroller->showdeleteForm($_GET['Hikes_Id']);
+            if ($method === "POST") $retrievecontroller->deleteHike($_POST['Hikes_Id']);
             break;
         case "hike":
-            $hikeController = new HikeController();
-            $hikeController->DisplayProduct($_GET['id']);
+            $retrievecontroller = new retrieveAllController();
+            $retrievecontroller->DisplayOneData($_GET['Hikes_Id']);
             break;
         case "edit":
             $hikeController = new HikeController();
@@ -61,6 +67,33 @@ try {
             $authController = new AuthController();
             $authController->logout();
             break;
+        case "profil":
+            $authController = new AuthController();
+            if ($method === "GET") $authController->showProfilForm();
+            // if ($method === "POST") $authController->updateProfil($_POST);
+            break;
+            case "edit":
+                $hikeController = new retrieveAllController();
+                if ($method === "GET") {
+                    $hikeController->showEditHike($_GET['Hikes_Id']);
+                    $hikeController->findTagByHike($_GET['Hikes_Id']);
+                }
+                if ($method === "POST") {
+                    $hikeController->updateHike(
+                        $_GET['id'],
+                        $_POST['name'],
+                        $_POST['distance'],
+                        $_POST['duration'],
+                        $_POST['elevation_gain'],
+                        $_POST['description'],
+                    );
+                    $hikeController->updateHikeTags(
+                        $_POST['tags_lied'] ?? [],
+                        $_POST['tags_not_lied'] ?? [],
+                        $_GET['id']
+                    );
+                }
+                break;
     }
 } catch (Exception $e) {
     print_r($e->getMessage());

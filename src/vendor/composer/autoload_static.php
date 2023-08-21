@@ -6,22 +6,51 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitd3ce80ee997baf94319163c9772d9810
 {
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+    );
+
     public static $classMap = array (
         'ComposerAutoloaderInitd3ce80ee997baf94319163c9772d9810' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInitd3ce80ee997baf94319163c9772d9810' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/Authcontroller.php',
-        'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikesController.php',
+        'Controllers\\MailController' => __DIR__ . '/../..' . '/controllers/MailController.php',
+        'Controllers\\retrieveAllController' => __DIR__ . '/../..' . '/controllers/RetrieveAllController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
+<<<<<<< HEAD
         'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
         'Models\\Tags' => __DIR__ . '/../..' . '/models/Tags.php',
+=======
+        'Models\\EmailSender' => __DIR__ . '/../..' . '/models/EmailSender.php',
+>>>>>>> development
         'Models\\User' => __DIR__ . '/../..' . '/models/User.php',
+        'Models\\retrieveAll' => __DIR__ . '/../..' . '/models/RetrieveAll.php',
+        'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd3ce80ee997baf94319163c9772d9810::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd3ce80ee997baf94319163c9772d9810::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitd3ce80ee997baf94319163c9772d9810::$classMap;
 
         }, null, ClassLoader::class);
