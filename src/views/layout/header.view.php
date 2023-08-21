@@ -16,7 +16,7 @@
             </ul>
             <ul>
                 <?php if (!empty($_SESSION['user'])): ?>
-                    <a href="/profil"> Bonjour <?= $_SESSION['user']['username'] ?></a>
+                    Bonjour <?= $_SESSION['user']['username'] ?>
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/profil">Profil</a></li>
                     <li><a href="/Add">Add new Hike</a></li>

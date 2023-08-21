@@ -83,34 +83,33 @@ class AuthController
         include 'views/layout/footer.view.php';
     }
 
-    public function updateProfil(array $post)
-    {
-        try {
-            if (empty($post['nickname']) || empty($post['email']) || empty($post['firstname']) || empty($post['lastname'])) {
-                throw new Exception('Formulaire non complet');
-            }
+    // public function updateProfil(array $post)
+    // {
+    //     try {
+    //         if (empty($post['nickname']) || empty($post['email']) || empty($post['firstname']) || empty($post['lastname'])) {
+    //             throw new Exception('Formulaire non complet');
+    //         }
 
-            $nickname = htmlspecialchars($post['nickname']);
-            $lastname = htmlspecialchars($post['lastname']);
-            $firstname = htmlspecialchars($post['firstname']);
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    //         $nickname = htmlspecialchars($post['nickname']);
+    //         $lastname = htmlspecialchars($post['lastname']);
+    //         $firstname = htmlspecialchars($post['firstname']);
+    //         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                throw new Exception('le mail est incorrect');
-            }
+    //         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //             throw new Exception('le mail est incorrect');
+    //         }
 
 
-            $edit = (new User())->editUser(
-                [$nickname, $email, $firstname, $lastname, $_SESSION['user']['id']]
-            );
-            if (!$edit) {
-                throw new Exception("Ca ne fonctionne pas!");
-            }
+    //         $edit = (new User())->editUser(
+    //             [$nickname, $email, $firstname, $lastname, $_SESSION['user']['id']]
+    //         );
+    //         if (!$edit) {
+    //             throw new Exception("Ca ne fonctionne pas!");
+    //         }
 
-            (new User())->session($nickname, $email, $firstname, $lastname, $_SESSION['user']['id']);
-        }catch (Exception $e){
-            echo $e->getMessage();
-        }
-    }
-
+    //         (new User())->session($nickname, $email, $firstname, $lastname, $_SESSION['user']['id']);
+    //     }catch (Exception $e){
+    //         echo $e->getMessage();
+    //     }
+    // }
 }
