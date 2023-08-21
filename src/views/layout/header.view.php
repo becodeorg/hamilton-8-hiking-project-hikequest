@@ -12,7 +12,7 @@
     <header>
     <nav>
             <ul>
-                <li><a href="/"><strong>Classic Models</strong></a></li>
+                <li><a href="/"><strong>HikeQuest</strong></a></li>
             </ul>
             <ul>
                 <?php if (!empty($_SESSION['user'])): ?>

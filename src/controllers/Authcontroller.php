@@ -76,5 +76,40 @@ class AuthController
         http_response_code(302);
         header('location: /');
     }
-}
+    public function showProfilForm()
+    {
+        include 'views/layout/header.view.php';
+        include 'views/profile.view.php';
+        include 'views/layout/footer.view.php';
+    }
 
+    // public function updateProfil(array $post)
+    // {
+    //     try {
+    //         if (empty($post['nickname']) || empty($post['email']) || empty($post['firstname']) || empty($post['lastname'])) {
+    //             throw new Exception('Formulaire non complet');
+    //         }
+
+    //         $nickname = htmlspecialchars($post['nickname']);
+    //         $lastname = htmlspecialchars($post['lastname']);
+    //         $firstname = htmlspecialchars($post['firstname']);
+    //         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+
+    //         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //             throw new Exception('le mail est incorrect');
+    //         }
+
+
+    //         $edit = (new User())->editUser(
+    //             [$nickname, $email, $firstname, $lastname, $_SESSION['user']['id']]
+    //         );
+    //         if (!$edit) {
+    //             throw new Exception("Ca ne fonctionne pas!");
+    //         }
+
+    //         (new User())->session($nickname, $email, $firstname, $lastname, $_SESSION['user']['id']);
+    //     }catch (Exception $e){
+    //         echo $e->getMessage();
+    //     }
+    // }
+}

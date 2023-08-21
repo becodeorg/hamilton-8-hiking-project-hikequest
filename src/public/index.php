@@ -44,6 +44,33 @@ try {
             $authController = new AuthController();
             $authController->logout();
             break;
+        case "profil":
+            $authController = new AuthController();
+            if ($method === "GET") $authController->showProfilForm();
+            // if ($method === "POST") $authController->updateProfil($_POST);
+            break;
+            case "edit":
+                $hikeController = new retrieveAllController();
+                if ($method === "GET") {
+                    $hikeController->showEditHike($_GET['Hikes_Id']);
+                    $hikeController->findTagByHike($_GET['Hikes_Id']);
+                }
+                if ($method === "POST") {
+                    $hikeController->updateHike(
+                        $_GET['id'],
+                        $_POST['name'],
+                        $_POST['distance'],
+                        $_POST['duration'],
+                        $_POST['elevation_gain'],
+                        $_POST['description'],
+                    );
+                    $hikeController->updateHikeTags(
+                        $_POST['tags_lied'] ?? [],
+                        $_POST['tags_not_lied'] ?? [],
+                        $_GET['id']
+                    );
+                }
+                break;
     }
 } catch (Exception $e) {
     print_r($e->getMessage());

@@ -27,12 +27,11 @@ $selectedTag = isset($_GET['select_tags']) ? $_GET['select_tags'] : 'all';
                             Distance: <?= $data['distance'] ?><br>
                             Duration: <?= $data['duration'] ?><br>
                             Elevation Gain: <?= $data['elevation_gain'] ?><br>
-                            Tags: <?= $data['Tags'] ?><br>
+                            Tags: <?= $data['Tags'] ?><br></a>
                             <?php if (isset($_SESSION['user']['username']) && (strtolower($_SESSION['user']['username']) == strtolower($data['nickname']) || strtolower($_SESSION['user']['username']) == "batcave")): ?>
                                 <a href="/edit?Hikes_Id=<?= $data['Hikes_Id'] ?>"><button>Edit</button></a>
                                 <a href="/delete?Hikes_Id=<?= $data['Hikes_Id'] ?>"><button>Delete</button></a>
                             <?php endif; ?>
-                        </a>
                     </li>
                 <?php endif; ?>
             <?php endif; ?>
