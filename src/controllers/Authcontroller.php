@@ -30,7 +30,7 @@ class AuthController
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
         try{
             $registerForm = (new User())->register($firstname, $lastname, $nickname,$email,$passwordHash);
-            $sessionStart = (new User())->session($nickname, $email);
+            $sessionStart = (new User())->session($nickname, $email, $firstname, $lastname);
             $mailSender = (new EmailSender())->SendRegConfMail($email, $nickname);
             http_response_code(302);
             header('location: /');
@@ -58,7 +58,7 @@ class AuthController
         if (password_verify($passwordInput, $user['password']) === false) {
             throw new Exception('Mauvais mot de passe');
         }
-        $sessionStart = (new User())->session($nickname, $user['email']);
+        $sessionStart = (new User())->session($nickname, $user['email'], $user['firstname'], $user['lastname']);
 
         // Redirect to home page
         http_response_code(302);

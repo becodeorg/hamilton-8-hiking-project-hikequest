@@ -29,5 +29,10 @@ class User extends Database
             'lastname' => $lastname
         ];
     }
-
+    public function editProfile (string $firstname, string $lastname, string $username, string $email, string $passwordHash){
+        $sql = "UPDATE Users 
+        SET firstname = ?, lastname = ?, nickname = ?, email = ?, password = ?
+        WHERE User_id = ?";
+        $stmt = $this->query($sql, [$firstname, $lastname, $username, $email, $passwordHash]);
+    }
 }
