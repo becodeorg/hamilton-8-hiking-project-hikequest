@@ -8,4 +8,8 @@ body {
   min-height: 100vh;
 }
 
+header {
+  background: red;
+}
+
 /*# sourceMappingURL=style.css.map */
