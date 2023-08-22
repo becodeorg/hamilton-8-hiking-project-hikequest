@@ -1,3 +1,6 @@
+<<<<<<< HEAD:src/public/assets/style/scss/style.css
+
+=======
 * {
   box-sizing: border-box;
   padding: 0;
@@ -127,5 +130,6 @@ form label {
 form .container_checkbox_form_edit_page {
   padding: 2rem 0 0.8rem 0;
 }
+>>>>>>> a520211c91f1429c709edd7d650c190a5cf50e08:src/public/css/style.css
 
 /*# sourceMappingURL=style.css.map */
