@@ -1,0 +1,30 @@
+header {
+  nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px 20px 50px;
+    ul{
+      display: flex;
+      align-items: center;
+      p{
+        padding-right: 20px;
+      }
+      li{
+        list-style: none;
+        padding-right: 10px;
+      }
+      li.blueButton{
+        border: lightskyblue;
+        border-radius: 20px;
+        background: lightskyblue;
+        padding: 0.7em 1.5em;
+        color: white;
+        text-align: center;
+      }
+      a{
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+}

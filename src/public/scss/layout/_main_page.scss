@@ -1,3 +1,56 @@
-header {
-  background: red;
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+
+  section.bannière {
+    width: 95%;
+    height: 500px;
+    border-radius: 10px;
+    background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80");
+    background-position: center center;
+  }
+  section.listOfHikes{
+    width: 100vw;
+    padding: 20px;
+    div.titleAndTags{
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      select{
+        width: 100px;
+        height: 20px;
+      }
+    }
+    div.hikes{
+      padding: 20px;
+      ul{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+        li{
+          border: 1px black solid;
+          border-radius: 10px;
+          list-style: none;
+          padding: 20px;
+          a{
+            text-decoration: none;
+            color: black;
+            button{
+              border: lightskyblue;
+              border-radius: 20px;
+              background: lightskyblue;
+              padding: 0.7em 1.5em;
+              color: white;
+              text-align: center;
+              margin: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
