@@ -25,7 +25,7 @@ class retrieveAll extends Database
 
         return $allDatas;
     }
-    
+
     public function FindOneData(string $idHike): array|false
     {
         $stmt = $this->query(
@@ -38,7 +38,7 @@ class retrieveAll extends Database
             GROUP BY h.Hikes_Id, h.Hikes_Name, h.distance, 
             h.duration, h.elevation_gain, h.description, u.nickname",
             [$idHike]
-        );        
+        );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function findAllTags(): array
@@ -53,7 +53,7 @@ class retrieveAll extends Database
     {
         $sqlDeleteRelations = "DELETE FROM `HikesTagsRelation` WHERE Htr_hikes_Id = ?";
         $sqlDeleteHike = "DELETE FROM `Hikes` WHERE Hikes_Id = ?";
-        
+
         $this->query($sqlDeleteRelations, [$idHike]);
         $this->query($sqlDeleteHike, [$idHike]);
     }
@@ -110,11 +110,11 @@ class retrieveAll extends Database
         return $tagsNotLied;
     }
 
-   public function deleteTagsRelation($idTags, $idHike) {
-       $sql = "DELETE  FROM HikesTagsRelation WHERE Htr_Tags_Id = ? AND Htr_hikes_Id = ?";
-       $stmt = $this->query($sql, [$idTags, $idHike]);
-       return $stmt;
-   }
+    public function deleteTagsRelation($idTags, $idHike) {
+        $sql = "DELETE  FROM HikesTagsRelation WHERE Htr_Tags_Id = ? AND Htr_hikes_Id = ?";
+        $stmt = $this->query($sql, [$idTags, $idHike]);
+        return $stmt;
+    }
 
     public function addTagsRelation($idTags, $idHike) {
         $sql = "INSERT INTO HikesTagsRelation (Htr_Tags_Id, Htr_hikes_Id)
@@ -131,6 +131,16 @@ class retrieveAll extends Database
 
         $stmt = $this->query($sql, [$idTags, $idHike]);
         return $stmt;
+    }
+
+    public function createHike(string $name, string $distance, string $duration, string $elevation, string $description, int $userId)
+    {
+        $sql = "INSERT INTO `Hikes`(`Hikes_Name`, `distance`, `duration`, `elevation_gain`, `description`, `H_User_Id`, `created_at`, `updated_at`) 
+                VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+        $this->query($sql, [$name, $distance, $duration, $elevation, $description, $userId]);
+
+        return $this->lastInsertId();
     }
 }
     

@@ -19,7 +19,7 @@
                 <?php if (!empty($_SESSION['user'])): ?>
                     <p><a href="/profil">Bonjour <?= $_SESSION['user']['username'] ?></a></p>
                     <li><a href="/logout">Logout</a></li>
-                    <li class="blueButton"><a href="/Add">Add new Hike</a></li>
+                    <li class="blueButton"><a href="/add">Add new Hike</a></li>
                 <?php else: ?>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>

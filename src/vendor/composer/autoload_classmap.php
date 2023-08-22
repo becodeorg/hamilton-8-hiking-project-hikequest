@@ -11,7 +11,6 @@ return array(
     'Composer\\Autoload\\ComposerStaticInitd3ce80ee997baf94319163c9772d9810' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Controllers\\AuthController' => $baseDir . '/controllers/Authcontroller.php',
-    'Controllers\\MailController' => $baseDir . '/controllers/MailController.php',
     'Controllers\\retrieveAllController' => $baseDir . '/controllers/RetrieveAllController.php',
     'Models\\Database' => $baseDir . '/models/Database.php',
     'Models\\EmailSender' => $baseDir . '/models/EmailSender.php',

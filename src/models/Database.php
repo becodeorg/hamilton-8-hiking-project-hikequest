@@ -12,7 +12,7 @@ use PDOStatement;
 class Database
 {
     private PDO $pdo;
-    
+
     public function __construct()
         //fonction pour creer les parametres de la future fonction
     {
