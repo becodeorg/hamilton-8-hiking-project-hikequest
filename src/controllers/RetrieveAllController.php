@@ -15,7 +15,7 @@ class retrieveAllController
         try {
             $datas = (new retrieveAll())->findAll();
             $tags = (new retrieveAll())->findAllTags();
-            // Display the list of hikes
+
             include 'views/layout/header.view.php';
             include 'views/index.view.php';
             include 'views/layout/footer.view.php';
@@ -33,7 +33,6 @@ class retrieveAllController
                 echo "Empty hike";
             }
 
-            // Display the hike details page
             include 'views/layout/header.view.php';
             include 'views/hike.view.php';
             include 'views/layout/footer.view.php';
@@ -58,7 +57,6 @@ class retrieveAllController
             echo "An error occurred: " . $e->getMessage();
         }
     }
-    /////////////////////////////////////////////
     public function showEditHike(string $idHike)
     {
         try {
@@ -71,7 +69,6 @@ class retrieveAllController
                 return;
             }
 
-            // Display the page
             include 'views/layout/header.view.php';
             include 'views/edit.view.php';
             include 'views/layout/footer.view.php';
