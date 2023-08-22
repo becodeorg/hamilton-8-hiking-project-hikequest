@@ -132,6 +132,7 @@ class retrieveAll extends Database
         $stmt = $this->query($sql, [$idTags, $idHike]);
         return $stmt;
     }
+
     public function createHike(string $name, string $distance, string $duration, string $elevation, string $description, int $userId)
     {
         $sql = "INSERT INTO `Hikes`(`Hikes_Name`, `distance`, `duration`, `elevation_gain`, `description`, `H_User_Id`, `created_at`, `updated_at`) 
@@ -140,8 +141,6 @@ class retrieveAll extends Database
         $this->query($sql, [$name, $distance, $duration, $elevation, $description, $userId]);
         
         return $this->lastInsertId();
-    }
-    
-    
+    } 
 }
     

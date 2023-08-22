@@ -94,7 +94,6 @@ class retrieveAllController
         }
     }
 
-
     public function findTagByHike($hikeId){
         $tagsChoice = (new retrieveAll())->findTagByHikeId($hikeId);
         return $tagsChoice;
