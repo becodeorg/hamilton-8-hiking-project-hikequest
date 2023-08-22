@@ -9,12 +9,11 @@ use PHPMailer\PHPMailer\SMTP;
 
 class EmailSender 
 {
-    public function SendRegConfMail($email, $username)
+    public function sendMail($email, $username, $subject, $body)
     {
         $mail = new PHPMailer;
         
         try {
-            $mail->SMTPDebug = 3;  
             $mail->isSMTP(); 
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;   
@@ -22,13 +21,17 @@ class EmailSender
             $mail->Password = "oochxflirdmsiysq"; 
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;  
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception('Invalid email address');
+            }
         
             $mail->setFrom('hikequestmail@gmail.com', 'HikeQuest');
             $mail->addAddress($email, $username);
             $mail->isHTML(true);         
-            $mail->Subject = "Welcome to hikequest";
-            $mail->Body = "<b>Hello, you have successfully been subscribed to HikeQuest, Welcome !</b>";    
-    
+            $mail->Subject = $subject;
+            $mail->Body = "<b>" . htmlspecialchars($body) . "</b>";    
+        
             if($mail->send()){
                 echo 'Email sent successfully';
             }

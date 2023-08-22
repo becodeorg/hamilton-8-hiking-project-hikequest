@@ -30,6 +30,17 @@ try {
             $retrievecontroller = new retrieveAllController();
             $retrievecontroller->DisplayOneData($_GET['Hikes_Id']);
             break;
+            case "add":
+            $authController = new retrieveAllController();
+            if ($method === "GET") $authController->displayaddform();
+            if ($method === "POST") $authController->addHike(
+                    $_POST['name'],
+                    $_POST['distance'],
+                    $_POST['duration'],
+                    $_POST['elevation_gain'],
+                    $_POST['description'],
+                    $_POST['tags_add']);
+            break;
         case "register":
             $authController = new AuthController();
             if ($method === "GET") $authController->showRegistrationForm();
@@ -47,7 +58,7 @@ try {
         case "profil":
             $authController = new AuthController();
             if ($method === "GET") $authController->showProfilForm();
-            // if ($method === "POST") $authController->updateProfil($_POST);
+            if ($method === "POST") $authController->updateProfil($_POST);
             break;
             case "edit":
                 $hikeController = new retrieveAllController();

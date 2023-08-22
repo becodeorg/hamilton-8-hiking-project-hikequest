@@ -6,6 +6,7 @@ namespace Controllers;
 
 use Exception;
 use Models\retrieveAll;
+use Models\EmailSender;
 
 class retrieveAllController
 {
@@ -87,6 +88,9 @@ class retrieveAllController
                 echo "Hike not saved";
                 return;
             }
+            $nickname = $_SESSION['user']['username'];
+            $email = $_SESSION['user']['email'];
+            $mailSender = (new EmailSender())->sendMail($email, $nickname, 'Update of you hike', "Your hike has been edited successfully!");
             header('location: /');
         } catch (Exception $e) {
             print_r($e->getMessage());
@@ -137,5 +141,32 @@ class retrieveAllController
             print_r($e->getMessage());
         }
     }
-    
+    public function displayaddform(){
+        try {
+        $tags = (new retrieveAll())->findAllTags();
+        include 'views/layout/header.view.php';
+        include 'views/create.view.php';
+        include 'views/layout/footer.view.php';
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+    public function addHike($name, $distance, $duration, $elevation, $description, $tags_add)
+    {
+        try {
+
+            $newHikeId = (new retrieveAll())->createHike($name, $distance, $duration, $elevation, $description, $_SESSION['user']['id']);
+            $nickname = $_SESSION['user']['username'];
+            $email = $_SESSION['user']['email'];
+            $mailSender = (new EmailSender())->sendMail($email, $nickname, 'Update of you hike', "Your hike has been added successfully!");
+            foreach ($tags_add as $tagId) {
+                if ($tagId) {
+                    (new retrieveAll())->addTagsRelation($tagId, $newHikeId);
+                }
+            }
+            header('Location: /');
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
 }

@@ -19,19 +19,21 @@ class User extends Database
         $stmt = Database::query($sql, [$nickname]);
         return $stmt->fetch();
     }
-    public function session(string $nickname, string $email, string $firstname, string $lastname){
+    public function session(string $nickname, string $email, string $firstname, string $lastname, string|int $id = null): void
+    {
         $_SESSION['user'] = [
-            'id' => $this->lastInsertId(),
+            'id' => $id,
             'username' => $nickname,
             'email' => $email,
             'firstname' => $firstname,
             'lastname' => $lastname
         ];
     }
-    public function editProfile (string $firstname, string $lastname, string $username, string $email, string $passwordHash){
+    public function editProfile(string $firstname, string $lastname, string $username, string $email, int $id)
+    {
         $sql = "UPDATE Users 
-        SET firstname = ?, lastname = ?, nickname = ?, email = ?, password = ?
-        WHERE User_id = ?";
-        $stmt = $this->query($sql, [$firstname, $lastname, $username, $email, $passwordHash]);
+                SET firstname = ?, lastname = ?, nickname = ?, email = ?
+                WHERE User_id = ?";
+            $stmt = Database::query($sql, [$firstname, $lastname, $username, $email, $id]);
     }
 }

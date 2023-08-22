@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-    <nav>
+        <nav>
             <ul>
                 <li><a href="/"><strong>HikeQuest</strong></a></li>
             </ul>
@@ -19,7 +19,7 @@
                     Bonjour <?= $_SESSION['user']['username'] ?>
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/profil">Profil</a></li>
-                    <li><a href="/Add">Add new Hike</a></li>
+                    <li><a href="/add">Add new hike</a></li>
                 <?php else: ?>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>
